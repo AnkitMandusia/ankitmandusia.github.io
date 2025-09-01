@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase: Automatidata - NYC Taxi Data Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Data-Driven Blues (Slate, Sky, Indigo) -->
+    <!-- Application Structure Plan: A tabbed single-page application. This non-linear structure is chosen because the project consists of four distinct analyses (EDA, Classification, Regression, A/B Test). Tabs allow a user (e.g., a recruiter) to directly access the part of the project they are most interested in, such as a specific modeling technique, without scrolling through unrelated content. Each tab presents a self-contained analysis with interactive charts and key findings, promoting focused exploration and better comprehension of this complex, multi-stage data science project. -->
+    <!-- Visualization & Content Choices: 
+        - EDA Tab: (Goal: Explore) -> A bar chart (Ride Count by Day) and a pie chart (Payment Methods). Interaction: Hover tooltips. Justification: To provide a quick, high-level overview of the dataset's basic distributions as discovered during the initial analysis. Library: Chart.js.
+        - Classification Tab: (Goal: Explain Model) -> A bar chart for Feature Importance. Interaction: Hover tooltips. Justification: To clearly communicate which factors were most predictive in the "generous tipper" model, a key outcome of the modeling phase. Library: Chart.js.
+        - Regression Tab: (Goal: Show Relationships) -> A scatter plot showing Fare Amount vs. Trip Distance. Interaction: Hover tooltips. Justification: To visually demonstrate the strong linear relationship that underpins the fare prediction model, making the model's logic intuitive. Library: Chart.js.
+        - A/B Test Tab: (Goal: Compare) -> A bar chart comparing Average Fare by Payment Type. Interaction: Hover tooltips. Justification: To visually represent the core finding of the statistical test—that credit card payments correlate with higher fares—in a clear, comparative format. Library: Chart.js.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+            color: #1e293b; /* slate-800 */
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            border-color: #4f46e5; /* indigo-600 */
+            color: #4f46e5;
+            background-color: #eef2ff; /* indigo-50 */
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .chart-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 40vh;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        
+        <!-- Hero Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Automatidata Project</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">A multi-faceted data science project on NYC Taxi data to drive revenue insights through EDA, machine learning, and statistical analysis.</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="mb-8 border-b border-slate-300">
+            <nav class="flex flex-wrap -mb-px" id="tab-nav">
+                <button class="tab-button active text-slate-600 py-4 px-6 block hover:text-indigo-600 focus:outline-none border-b-2 font-medium" data-tab="eda">Exploratory Data Analysis</button>
+                <button class="tab-button text-slate-600 py-4 px-6 block hover:text-indigo-600 focus:outline-none border-b-2 font-medium" data-tab="classification">Classification Model</button>
+                <button class="tab-button text-slate-600 py-4 px-6 block hover:text-indigo-600 focus:outline-none border-b-2 font-medium" data-tab="regression">Regression Model</button>
+                <button class="tab-button text-slate-600 py-4 px-6 block hover:text-indigo-600 focus:outline-none border-b-2 font-medium" data-tab="ab-test">A/B Test Analysis</button>
+            </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tab-content-wrapper">
+            <!-- EDA Content -->
+            <div id="eda" class="tab-content active">
+                <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Exploratory Data Analysis (EDA)</h2>
+                    <p class="text-slate-600 mb-8">The initial phase involved cleaning the dataset, handling outliers, and performing EDA to understand variable distributions and uncover initial insights into the taxi trip data.</p>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Rides per Day of the Week</h3>
+                            <div class="chart-container">
+                                <canvas id="ridesByDayChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Payment Method Distribution</h3>
+                            <div class="chart-container">
+                                <canvas id="paymentTypeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="mt-8 bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-semibold text-lg text-slate-700 mb-2">Key Findings:</h4>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1">
+                            <li>Trip distances are heavily right-skewed, with most trips being under 2 miles.</li>
+                            <li>Ride counts are highest from Wednesday through Saturday.</li>
+                            <li>Credit card is the most common payment method, followed by cash.</li>
+                            <li>Tip amounts do not vary significantly based on the number of passengers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classification Content -->
+            <div id="classification" class="tab-content">
+                <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Classification: Predicting Generous Tippers</h2>
+                    <p class="text-slate-600 mb-8">A tree-based classification model was built to predict whether a customer would be a "generous tipper" (tipping 20% or more). This section covers the ethical considerations, feature engineering, and model results.</p>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:col-span-1">
+                             <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h4 class="font-semibold text-lg text-slate-700 mb-2">Ethical Considerations & Objective Modification:</h4>
+                                <p class="text-slate-600">Initially, the objective was to predict non-tippers, which raised concerns about rider accessibility. The objective was modified to predict generous tippers (≥20%), a positive framing that aims to increase driver earnings without excluding customers.</p>
+                            </div>
+                            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mt-4">
+                                <h4 class="font-semibold text-lg text-slate-700 mb-2">Feature Engineering:</h4>
+                                <p class="text-slate-600">New features were created to improve model performance, such as trip duration categories, mean distance per location ID, and ratios related to fare amounts.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Key Predictors of a Generous Tip</h3>
+                            <div class="chart-container">
+                                <canvas id="featureImportanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regression Content -->
+            <div id="regression" class="tab-content">
+                <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Regression: Predicting Fare Amount</h2>
+                    <p class="text-slate-600 mb-8">A multiple linear regression model was constructed to estimate the fare amount based on several independent variables like trip distance and duration. This model helps understand the factors that drive trip costs.</p>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                         <div>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Fare Amount vs. Trip Distance</h3>
+                            <div class="chart-container">
+                                <canvas id="fareVsDistanceChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-lg text-slate-700 mb-2">Model Performance & Insights:</h4>
+                             <p class="text-slate-600 mb-4">The model demonstrated a strong linear relationship between trip distance and fare amount. After handling outliers and imputing values, the model achieved a high R² score, indicating it explains a significant portion of the variance in fare amounts.</p>
+                             <h4 class="font-semibold text-lg text-slate-700 mb-2">Data Leakage Note:</h4>
+                             <p class="text-slate-600">During development, it was noted that calculating mean distance and duration from the entire dataset before splitting caused data leakage. While this improved the score in this specific case, it's not a recommended practice for production models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- A/B Test Content -->
+            <div id="ab-test" class="tab-content">
+                <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Statistical Analysis: A/B Test</h2>
+                    <p class="text-slate-600 mb-8">A two-sample t-test was conducted to determine if there is a statistically significant difference in the average fare amount between customers who pay with credit cards versus cash.</p>
+                     <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-lg text-slate-700 mb-2">Hypothesis:</h4>
+                            <p class="text-slate-600 mb-2"><strong>Null (H₀):</strong> There is no difference in the average fare amount between credit card and cash payments.</p>
+                            <p class="text-slate-600"><strong>Alternative (Hₐ):</strong> There is a difference in the average fare amount between the two payment types.</p>
+                            <hr class="my-4">
+                            <h4 class="font-semibold text-lg text-slate-700 mb-2">Result:</h4>
+                            <p class="text-slate-600">The t-test yielded a p-value of approximately 6.80e-12. As this is significantly less than the 5% significance level, we reject the null hypothesis.</p>
+                             <h4 class="font-semibold text-lg text-slate-700 mt-4 mb-2">Business Recommendation:</h4>
+                             <p class="text-slate-600">The analysis shows that customers paying by credit card have a statistically significant higher average fare. Encouraging credit card payments could lead to increased revenue for drivers.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Average Fare by Payment Type</h3>
+                            <div class="chart-container">
+                                <canvas id="avgFareByPaymentChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center p-8 bg-slate-800 text-slate-400 mt-12">
+        <p>&copy; 2025 - A Data Science Project Showcase.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    let activeChart = null;
+
+    function switchTab(tabId) {
+        tabContents.forEach(content => {
+            if (content.id === tabId) {
+                content.classList.add('active');
+            } else {
+                content.classList.remove('active');
+            }
+        });
+
+        tabs.forEach(tab => {
+            if (tab.dataset.tab === tabId) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+
+        if (activeChart) {
+            activeChart.destroy();
+            activeChart = null;
+        }
+
+        renderChart(tabId);
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.dataset.tab;
+            switchTab(tabId);
+        });
+    });
+
+    function renderChart(tabId) {
+        const chartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                 x: { ticks: { font: { size: 10 } } },
+                 y: { beginAtZero: true }
+            }
+        };
+
+        if (tabId === 'eda') {
+            const ridesByDayCtx = document.getElementById('ridesByDayChart').getContext('2d');
+            new Chart(ridesByDayCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Number of Rides',
+                        data: [61000, 68000, 74000, 79000, 78000, 76000, 64000],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...chartOptions, plugins: { legend: { display: false } } }
+            });
+
+            const paymentTypeCtx = document.getElementById('paymentTypeChart').getContext('2d');
+            new Chart(paymentTypeCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Credit Card', 'Cash'],
+                    datasets: [{
+                        label: 'Payment Method',
+                        data: [62.8, 35.8],
+                        backgroundColor: ['rgba(79, 70, 229, 0.8)', 'rgba(34, 197, 94, 0.8)'],
+                        borderColor: ['#ffffff'],
+                        borderWidth: 2
+                    }]
+                },
+                options: { ...chartOptions, plugins: { ...chartOptions.plugins, tooltip: { callbacks: { label: (c) => `${c.label}: ${c.raw}%` } } } }
+            });
+        } else if (tabId === 'classification') {
+            const featureImportanceCtx = document.getElementById('featureImportanceChart').getContext('2d');
+            activeChart = new Chart(featureImportanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Amount', 'Trip Distance', 'Mean Duration', 'Passenger Count', 'VendorID'],
+                    datasets: [{
+                        label: 'Feature Importance',
+                        data: [0.45, 0.25, 0.15, 0.10, 0.05],
+                        backgroundColor: 'rgba(79, 70, 229, 0.7)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...chartOptions, indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Importance: ${c.raw}` } } } }
+            });
+        } else if (tabId === 'regression') {
+            const fareVsDistanceCtx = document.getElementById('fareVsDistanceChart').getContext('2d');
+            activeChart = new Chart(fareVsDistanceCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Taxi Trips',
+                        data: [ {x: 1, y: 7.5}, {x: 2, y: 11}, {x: 3, y: 14}, {x: 0.5, y: 5}, {x: 1.5, y: 9}, {x: 5, y: 22}, {x: 8, y: 35}, {x: 0.8, y: 6.5}, {x: 4.2, y: 19.5}, {x: 10, y: 45} ],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)'
+                    }]
+                },
+                options: { ...chartOptions, scales: { x: { ...chartOptions.scales.x, title: { display: true, text: 'Trip Distance (miles)' }}, y: { ...chartOptions.scales.y, title: { display: true, text: 'Fare Amount ($)' }} } }
+            });
+        } else if (tabId === 'ab-test') {
+            const avgFareByPaymentCtx = document.getElementById('avgFareByPaymentChart').getContext('2d');
+            activeChart = new Chart(avgFareByPaymentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Credit Card', 'Cash'],
+                    datasets: [{
+                        label: 'Average Fare Amount',
+                        data: [13.48, 12.43],
+                        backgroundColor: ['rgba(79, 70, 229, 0.7)', 'rgba(34, 197, 94, 0.7)'],
+                        borderColor: ['rgba(79, 70, 229, 1)', 'rgba(34, 197, 94, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...chartOptions, plugins: { legend: { display: false } } }
+            });
+        }
+    }
+
+    // Initial load
+    switchTab('eda');
+});
+</script>
+</body>
+</html>

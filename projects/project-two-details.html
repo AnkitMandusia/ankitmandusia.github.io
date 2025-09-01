@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase: Spe Knowledge Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f0f5; /* Light lavender-gray background */
+            color: #1a103c; /* Dark purple text */
+        }
+        .diagram-node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .diagram-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .diagram-node.active {
+            background-color: #9d55f5; /* Primary accent */
+            color: #ffffff;
+            border-color: #9d55f5;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-button.open + .accordion-content {
+            max-height: 500px;
+        }
+        .tech-tag {
+            background-color: #e5d9f8;
+            color: #5d3a9b;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+        
+        <header class="text-center mb-16 md:mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-4">🧠 Spe Knowledge Assistant</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An intelligent RAG pipeline that understands and answers questions about your documents and images.</p>
+        </header>
+
+        <section id="overview" class="mb-16 md:mb-24 scroll-mt-16">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Project Overview</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        Spe is a complete Retrieval-Augmented Generation (RAG) system built from the ground up. It allows users to upload documents (PDFs) and images (screenshots, photos), and then engage in a natural conversation to extract information. The system uses an OCR engine to read text from images, a vector database for efficient searching, and a large language model (Meta-Llama-13b) to generate accurate, context-aware answers.
+                    </p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <div class="text-center p-8 bg-gradient-to-br from-[#9d55f5] to-[#f555b5] rounded-full w-64 h-64 flex flex-col justify-center items-center shadow-lg">
+                        <span class="text-6xl mb-2">💡</span>
+                        <h3 class="text-2xl font-bold text-white">From Pixels to Answers</h3>
+                        <p class="text-white opacity-90">OCR-Powered RAG</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="mb-16 md:mb-24 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Key Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📄 PDF & Image Processing</h3>
+                    <p class="text-slate-600">Extracts text from both PDF documents and images (PNG, JPG) using a robust OCR engine.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🧠 Meta-Llama 13b Integration</h3>
+                    <p class="text-slate-600">Leverages Meta's powerful Llama 13b model locally for high-quality text generation and understanding.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">Isolated Sessions</h3>
+                    <p class="text-slate-600">Each document upload session is isolated, ensuring answers are strictly based on the provided context.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🚀 High-Performance Backend</h3>
+                    <p class="text-slate-600">Built with FastAPI and served via ngrok, providing a responsive and scalable foundation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">💬 Interactive Chat UI</h3>
+                    <p class="text-slate-600">A dynamic, mobile-responsive interface with streaming responses, stop-generation control, and a fresh start option.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📚 Source Citation</h3>
+                    <p class="text-slate-600">Every answer is backed by the source document's filename, ensuring transparency and trust.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="mb-16 md:mb-24 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-4">Interactive RAG Pipeline</h2>
+            <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Click on each component of the pipeline to learn more about its role.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="relative h-auto md:h-[350px] flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0" id="diagram-container">
+                    <!-- Nodes -->
+                    <div id="node-1" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step1">
+                        <p class="font-semibold">Document Upload</p><p class="text-sm text-slate-500">PDFs & Images</p>
+                    </div>
+                    <div id="node-2" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2">
+                        <p class="font-semibold">OCR & Embedding</p><p class="text-sm text-slate-500">Text Extraction</p>
+                    </div>
+                    <div id="node-3" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step3">
+                        <p class="font-semibold">Pinecone Vector Store</p><p class="text-sm text-slate-500">Indexing</p>
+                    </div>
+                    <div id="node-4" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step4">
+                        <p class="font-semibold">User Query & RAG</p><p class="text-sm text-slate-500">Context Retrieval</p>
+                    </div>
+                     <div id="node-5" class="diagram-node z-10 bg-[#9d55f5] text-white rounded-lg p-4 text-center w-48" data-info="step5">
+                        <p class="font-semibold">Meta-Llama 13b LLM</p><p class="text-sm opacity-90">Answer Generation</p>
+                    </div>
+                </div>
+                <div id="info-panel" class="mt-8 p-6 bg-stone-100 rounded-lg min-h-[100px] border border-stone-200">
+                    <p class="text-slate-700 text-center">Select a component to see details.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="mb-16 md:mb-24 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Technology Stack</h2>
+            <div class="flex flex-wrap justify-center gap-4 text-lg">
+                <span class="tech-tag px-4 py-2 rounded-lg">Python</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">FastAPI</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">LangChain</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">Pinecone</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">Llama 13b</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">PyTorch</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">Tesseract (OCR)</span>
+                <span class="tech-tag px-4 py-2 rounded-lg">Hugging Face</span>
+            </div>
+        </section>
+
+        <!-- ✅ NEW: Implementation Journey Section -->
+        <section id="implementation" class="scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Implementation Journey</h2>
+            <div class="max-w-3xl mx-auto space-y-4" id="accordion-container">
+                <!-- Accordion items will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-8 bg-slate-800 text-slate-400 mt-16">
+        <p>&copy; 2025 - An Advanced Generative AI Project Showcase.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const diagramNodes = document.querySelectorAll('.diagram-node');
+    const infoPanel = document.getElementById('info-panel');
+    const accordionContainer = document.getElementById('accordion-container');
+
+    const infoContent = {
+        step1: {
+            title: 'Step 1: Document Upload',
+            text: 'The user uploads PDF documents or images like screenshots and photos through the web interface. Each new upload session is assigned a unique ID to keep the context separate from previous sessions.'
+        },
+        step2: {
+            title: 'Step 2: OCR & Embedding',
+            text: 'The FastAPI backend processes each file. For PDFs, text is extracted directly. For images, Google\'s Tesseract OCR engine reads the visual content and converts it into text. This text is then converted into numerical vectors using a Hugging Face sentence-transformer model.'
+        },
+        step3: {
+            title: 'Step 3: Pinecone Vector Store',
+            text: 'The generated text vectors (embeddings) are stored in a Pinecone index under a unique namespace corresponding to the user\'s session ID. This allows for incredibly fast and scalable semantic searching.'
+        },
+        step4: {
+            title: 'Step 4: User Query & RAG',
+            text: 'When the user asks a question, the system first checks for simple conversational greetings. For complex queries, it converts the question into a vector and uses it to retrieve the most relevant text chunks from the Pinecone database for that specific session.'
+        },
+        step5: {
+            title: 'Step 5: Meta-Llama 13b',
+            text: 'The user\'s question and the retrieved context are passed to the locally-run Llama 13b model. A specific, restrictive prompt guides the model to synthesize the information and generate a single, clean answer without repetition.'
+        }
+    };
+    
+    // ✅ NEW: Content for the implementation journey
+    const implementationSteps = [
+        { title: '1. Foundation & Environment Setup', content: 'Initialized a Google Colab environment and installed all necessary libraries, including FastAPI, LangChain, PyTorch, and Tesseract for OCR. Configured environment variables for API keys.' },
+        { title: '2. Core Backend Development', content: 'Built the FastAPI server to handle file uploads and queries. Developed the RAG pipeline using LangChain, integrating the Meta-Llama 13b model and Pinecone vector store.' },
+        { title: '3. OCR Integration for Images', content: 'Incorporated Tesseract OCR to enable text extraction from images and screenshots. Wrote logic to handle both image and PDF inputs seamlessly within the same pipeline.' },
+        { title: '4. Interactive Frontend Design', content: 'Designed and coded the complete HTML, CSS, and JavaScript for the chat UI. Focused on a mobile-first, responsive design with a custom color scheme, animated loaders, and interactive elements.' },
+        { title: '5. Session Management', content: 'Implemented a robust session management system using unique IDs generated on the client-side. This ensures that each user\'s conversation is private and contextually isolated.' },
+        { title: '6. Prompt Engineering & Refinement', content: 'Iteratively tested and refined the prompt sent to the Meta model to eliminate repetitive responses and ensure answers are concise, direct, and strictly based on the provided context.' }
+    ];
+
+    diagramNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            diagramNodes.forEach(n => n.classList.remove('active'));
+            node.classList.add('active');
+            const infoKey = node.dataset.info;
+            const content = infoContent[infoKey];
+            infoPanel.innerHTML = `<h4 class="font-bold text-lg mb-2 text-slate-800">${content.title}</h4><p class="text-slate-700">${content.text}</p>`;
+        });
+    });
+
+    // ✅ NEW: Logic to build and manage the accordion
+    implementationSteps.forEach((step, index) => {
+        const item = document.createElement('div');
+        item.className = 'bg-white rounded-lg shadow-sm';
+        item.innerHTML = `
+            <button class="accordion-button w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                <span>${step.title}</span>
+                <span class="transform transition-transform duration-300 text-purple-500 text-xl">+</span>
+            </button>
+            <div class="accordion-content px-4">
+                <p class="py-4 text-slate-600 border-t border-slate-200">${step.content}</p>
+            </div>
+        `;
+        accordionContainer.appendChild(item);
+    });
+
+    accordionContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('.accordion-button');
+        if (button) {
+            const allButtons = accordionContainer.querySelectorAll('.accordion-button');
+            const wasOpen = button.classList.contains('open');
+
+            allButtons.forEach(b => {
+                b.classList.remove('open');
+                b.querySelector('span:last-child').textContent = '+';
+                b.querySelector('span:last-child').classList.remove('rotate-45');
+            });
+
+            if (!wasOpen) {
+                button.classList.add('open');
+                button.querySelector('span:last-child').textContent = '+';
+                button.querySelector('span:last-child').classList.add('rotate-45');
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
+
