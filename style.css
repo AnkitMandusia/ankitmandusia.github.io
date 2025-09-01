@@ -150,6 +150,8 @@ nav ul li a {
     color: var(--primary-text);
     overflow: hidden;
     padding: 0 2rem;
+    padding-top: 100px;
+
 }
 
 #particles-js {
