@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase: Kepler Financial Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+            color: #292524; /* stone-800 */
+        }
+        .diagram-node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .diagram-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .diagram-node.active {
+            background-color: #f59e0b; /* amber-500 */
+            color: #ffffff;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-button.open + .accordion-content {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+        
+        <header class="text-center mb-16 md:mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-4">🪐 Kepler Financial Analyst</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An advanced multi-agent AI system for interactive analysis and visualization of SEC filings.</p>
+        </header>
+
+        <section id="overview" class="mb-16 md:mb-24 scroll-mt-16">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Project Overview</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        Kepler is a web application designed to answer complex questions about corporate financial documents. The system uses a **multi-agent architecture** where different AI specialists collaborate to handle user requests. Instead of just searching for text, it can understand a user's intent, extract structured data from financial tables, and generate both natural language answers and interactive data visualizations on the fly.
+                    </p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <div class="text-center p-8 bg-amber-400 rounded-full w-64 h-64 flex flex-col justify-center items-center shadow-lg">
+                        <span class="text-6xl mb-2">🚀</span>
+                        <h3 class="text-2xl font-bold text-white">Multi-Agent AI</h3>
+                        <p class="text-white opacity-90">Reliable & Accurate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="mb-16 md:mb-24 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Key Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📄 HTML Document Processing</h3>
+                    <p class="text-slate-600">Ingests modern SEC filings in their native HTML format, preserving table structures for analysis.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🤖 Multi-Agent System</h3>
+                    <p class="text-slate-600">Uses specialist AI agents for routing, data extraction, and text generation for higher accuracy and reliability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📊 On-the-Fly Visualizations</h3>
+                    <p class="text-slate-600">Translates natural language questions (e.g., "chart the net income") into interactive plots using Plotly.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🔍 Advanced RAG</h3>
+                    <p class="text-slate-600">Combines semantic search on a vector database with structured table lookups for highly contextual answers.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">💬 Interactive Chat UI</h3>
+                    <p class="text-slate-600">A dynamic Streamlit interface with streaming responses and a modern, user-friendly design.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📚 Source Citation</h3>
+                    <p class="text-slate-600">Every text-based answer is backed by direct quotes from the source document for verification and trust.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="mb-16 md:mb-24 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-4">Interactive Multi-Agent Architecture</h2>
+            <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Click on each component of the pipeline to learn more about its role.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="relative h-auto md:h-[450px] flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0" id="diagram-container">
+                    <div id="node-1" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step1">
+                        <p class="font-semibold">User Prompt & RAG</p>
+                        <p class="text-sm text-slate-500">Question + Context</p>
+                    </div>
+                    <div id="node-2" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2">
+                        <p class="font-semibold">Router Agent</p>
+                        <p class="text-sm text-slate-500">Intent Classification</p>
+                    </div>
+                    <div class="z-10 flex flex-col gap-4">
+                        <div id="node-3" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step3">
+                            <p class="font-semibold">Answer Agent</p>
+                            <p class="text-sm text-slate-500">Generates Text</p>
+                        </div>
+                        <div id="node-4" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step4">
+                            <p class="font-semibold">Chart Agent</p>
+                            <p class="text-sm text-slate-500">Extracts Data</p>
+                        </div>
+                    </div>
+                    <div class="z-10 flex flex-col gap-4">
+                         <div id="node-5" class="diagram-node bg-amber-400 text-white rounded-lg p-4 text-center w-48" data-info="step5">
+                            <p class="font-semibold">Text Response</p>
+                            <p class="text-sm opacity-90">With Citations</p>
+                        </div>
+                         <div id="node-6" class="diagram-node bg-amber-400 text-white rounded-lg p-4 text-center w-48" data-info="step6">
+                            <p class="font-semibold">Interactive Chart</p>
+                            <p class="text-sm opacity-90">Built with Plotly</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="info-panel" class="mt-8 p-6 bg-stone-100 rounded-lg min-h-[100px] border border-stone-200">
+                    <p class="text-slate-700 text-center">Select a component to see details.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="mb-16 md:mb-24 scroll-mt-16">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-8">Skills Demonstrated</h2>
+                    <ul class="space-y-4 text-slate-700">
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Multi-Agent AI Systems</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Advanced RAG Pipelines</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Natural Language to SQL/Query</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Vector Database Management (Qdrant)</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>LLM Orchestration (LangChain)</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-8">Technology Stack</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Python</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">LangChain</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Hugging Face</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Qdrant</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Pandas</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Streamlit</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Plotly</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">PyTorch</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="implementation" class="scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Implementation Journey</h2>
+            <div class="max-w-3xl mx-auto space-y-4" id="accordion-container">
+                </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-8 bg-slate-800 text-slate-400 mt-16">
+        <p>&copy; 2025 - An Advanced Generative AI Project Showcase.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const diagramNodes = document.querySelectorAll('.diagram-node');
+    const infoPanel = document.getElementById('info-panel');
+    const accordionContainer = document.getElementById('accordion-container');
+
+    const infoContent = {
+        step1: {
+            title: 'Step 1: User Prompt & RAG',
+            text: 'The process starts with the user\'s question. The system performs a semantic search on the Qdrant vector database to retrieve the most relevant text chunks from the document, providing rich context for the AI agents.'
+        },
+        step2: {
+            title: 'Step 2: The Router Agent',
+            text: 'The user question and its context are sent to the first specialist: the Router Agent. Its only job is to classify the user\'s intent as either "text" or "chart". This simple, focused task ensures high accuracy.'
+        },
+        step3: {
+            title: 'Step 3: The Answer Agent',
+            text: 'If the intent is "text", the Answer Agent is activated. It receives the context and the question, and its sole purpose is to generate a comprehensive, well-formatted text answer with source citations.'
+        },
+        step4: {
+            title: 'Step 4: The Chart Agent',
+            text: 'If the intent is "chart", the Chart Agent is activated. Its only job is to translate the user\'s natural language request (e.g., "chart the net income") into a structured query that the Python backend can use.'
+        },
+        step5: {
+            title: 'Step 5: Text Response',
+            text: 'The final text answer, generated by the Answer Agent, is streamed token-by-token to the Streamlit UI, providing an interactive and responsive user experience.'
+        },
+        step6: {
+            title: 'Step 6: Interactive Chart Generation',
+            text: 'The Python backend receives the structured query from the Chart Agent. It then uses Pandas to find and process the data from pre-parsed tables and Plotly to build a beautiful, interactive visualization.'
+        }
+    };
+    
+    const implementationSteps = [
+        { title: '1. Environment & Data Ingestion', content: 'Set up a Python environment and all libraries. Developed a robust script to download the HTML SEC filing and pre-process all tables into Pandas DataFrames for analysis.' },
+        { title: '2. Vector Database & RAG Core', content: 'Used LangChain to chunk the document, generate text embeddings with Hugging Face models, and build a Qdrant vector database for efficient semantic retrieval.' },
+        { title: '3. Multi-Agent System Design', content: 'Designed and implemented the core logic with specialist AI agents (Router, Answer, Chart) to ensure reliability and accuracy, moving beyond a single-prompt approach.' },
+        { title: '4. Natural Language to Query', content: 'Developed a sophisticated prompt for the Chart Agent to translate user requests into structured queries, allowing Python to handle the data processing and plotting.' },
+        { title: '5. UI/UX Development in Streamlit', content: 'Built a polished, interactive chat interface using Streamlit, featuring streaming responses, dynamic send/stop buttons, and a custom theme.' },
+        { title: '6. Deployment and Iteration', content: 'Deployed the application using ngrok for public access. Iteratively debugged and refined the prompts and Python logic based on real-world testing to handle edge cases and improve reliability.' }
+    ];
+
+    diagramNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            diagramNodes.forEach(n => n.classList.remove('active'));
+            node.classList.add('active');
+            const infoKey = node.dataset.info;
+            const content = infoContent[infoKey];
+            infoPanel.innerHTML = `<h4 class="font-bold text-lg mb-2 text-slate-800">${content.title}</h4><p class="text-slate-700">${content.text}</p>`;
+        });
+    });
+    
+    implementationSteps.forEach((step, index) => {
+        const item = document.createElement('div');
+        item.className = 'bg-white rounded-lg shadow-sm';
+        item.innerHTML = `
+            <button class="accordion-button w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
+                <span>${step.title}</span>
+                <span class="transform transition-transform duration-300 text-amber-500 text-xl">+</span>
+            </button>
+            <div class="accordion-content px-4">
+                <p class="py-4 text-slate-600 border-t border-slate-200">${step.content}</p>
+            </div>
+        `;
+        accordionContainer.appendChild(item);
+    });
+
+    accordionContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('.accordion-button');
+        if (button) {
+            const allButtons = accordionContainer.querySelectorAll('.accordion-button');
+            const wasOpen = button.classList.contains('open');
+
+            allButtons.forEach(b => {
+                b.classList.remove('open');
+                b.querySelector('span:last-child').textContent = '+';
+                b.querySelector('span:last-child').classList.remove('rotate-45');
+            });
+
+            if (!wasOpen) {
+                button.classList.add('open');
+                button.querySelector('span:last-child').textContent = '+';
+                button.querySelector('span:last-child').classList.add('rotate-45');
+            }
+        }
+    });
+
+});
+</script>
+</body>
+</html>
