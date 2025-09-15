@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Showcase: Automated Fact-Checker with Source Analysis</title>
+    <title>Project Showcase: Veracity Engine - AI Fact-Checker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Cool Neutrals (Slate, Cyan, Stone) -->
-    <!-- Application Structure Plan: A single-page, scrolling application designed to detail the Fact-Checker project. The structure flows from a high-level introduction (hero, overview) to a detailed technical breakdown (interactive architecture), and concludes with the specific skills and implementation plan. This top-down approach is ideal for explaining a complex system to stakeholders or recruiters. The centerpiece is the interactive diagram, which allows users to deconstruct the system's workflow step-by-step, providing a much deeper and more engaging understanding than a static document. -->
-    <!-- Visualization & Content Choices: 
-        - Project Overview: (Goal: Inform) -> Two-column layout with text and a thematic icon to visually anchor the concept. Justification: Provides a balanced and scannable introduction.
-        - Key Features: (Goal: Organize) -> Card-based grid with icons. Interaction: Subtle hover effect. Justification: Breaks down the project's core functionalities into easily digestible, visually distinct sections.
-        - Fact-Checking Architecture: (Goal: Explain/Explore) -> Custom interactive diagram built with HTML/CSS. Interaction: Clicking on each stage reveals a detailed explanation of its function. Justification: Essential for clarifying a multi-stage data and logic flow, making the system's inner workings transparent and understandable. Library: Vanilla JS.
-        - Tech Stack: (Goal: Inform) -> A clean grid of styled text blocks. Justification: Presents the technologies used in a clear, organized manner without the clutter of logos.
-        - Implementation Roadmap: (Goal: Organize) -> An accordion component. Interaction: Users can click to expand/collapse steps. Justification: Manages information density by presenting a high-level roadmap that allows for optional deep-dives into specific stages, keeping the initial view uncluttered.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -51,8 +41,8 @@
         
         <!-- Hero Section -->
         <header class="text-center mb-16 md:mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Automated Fact-Checker with Source Analysis</h1>
-            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">A robust GenAI pipeline that verifies claims against real-time information and analyzes source credibility.</p>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Veracity Engine: AI-Powered Fact-Checker</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An advanced RAG pipeline that verifies claims against real-time web evidence, analyzes source credibility, and ensures response reliability with self-consistency checks.</p>
         </header>
 
         <!-- Project Overview Section -->
@@ -61,7 +51,7 @@
                 <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
                     <h2 class="text-3xl font-bold text-slate-800 mb-4">Project Overview</h2>
                     <p class="text-slate-600 leading-relaxed">
-                        This project is an advanced fact-checking tool that goes beyond a simple "true/false" verdict. When a user submits a claim, the system retrieves and analyzes information from multiple, diverse online sources in real-time. It critically evaluates the credibility of these sources before using a Large Language Model to synthesize the findings. The final output provides a nuanced verdict (e.g., "Mostly True," "Misleading"), a detailed explanation, and links to the evidence, empowering users with a transparent and trustworthy analysis.
+                        The Veracity Engine is a sophisticated tool that goes beyond a simple "true/false" verdict. When a user submits a claim via voice or text, the system performs real-time web searches using the Tavily API, vets the credibility of the sources, and extracts relevant evidence. It then employs advanced AI patterns like **Chain-of-Thought** and **Self-Consistency** with the Gemini LLM to generate a nuanced, reliable verdict with a detailed explanation and full source transparency.
                     </p>
                 </div>
                 <div class="flex justify-center items-center">
@@ -79,32 +69,28 @@
             <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Key Features</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🗣️ Voice & Text Input</h3>
-                    <p class="text-slate-600">Accepts user claims through both typed text and spoken audio for maximum accessibility.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🗣️ Multimodal Input</h3>
+                    <p class="text-slate-600">Accepts user claims through both typed text and high-quality spoken audio for maximum accessibility.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🌐 Real-Time Web Search</h3>
-                    <p class="text-slate-600">Utilizes Google Search grounding to gather the latest, most relevant information from across the web.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🌐 Live Web Search</h3>
+                    <p class="text-slate-600">Utilizes the Tavily Search API to gather the latest, most relevant information from across the web.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🛡️ Source Credibility Analysis</h3>
-                    <p class="text-slate-600">Assesses the reliability of information sources against known fact-checking sites and reputable domains.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🛡️ Source Vetting</h3>
+                    <p class="text-slate-600">Automatically prioritizes information from a predefined list of reputable domains to improve reliability.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">⚖️ Nuanced Verdicts</h3>
-                    <p class="text-slate-600">Provides a spectrum of ratings (e.g., True, Misleading, False) instead of a simple binary outcome.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">⚙️ Self-Consistency</h3>
+                    <p class="text-slate-600">Queries the LLM multiple times in parallel and selects the majority verdict to reduce errors and hallucinations.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">✍️ Evidence Synthesis</h3>
-                    <p class="text-slate-600">An LLM generates a detailed explanation for its verdict, highlighting consensus and contradictions in the sources.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🧪 RAG Evaluation</h3>
+                    <p class="text-slate-600">Integrates Ragas for on-the-fly evaluation of each response, logging key metrics like faithfulness and relevancy.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🔗 Transparent Sourcing</h3>
-                    <p class="text-slate-600">Every fact-check is accompanied by citations and links to the original sources used for the analysis.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">💾 Evidence Caching</h3>
-                    <p class="text-slate-600">Stores retrieved evidence in a vector database to accelerate analysis of similar future claims.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">⚡ FAISS Caching</h3>
+                    <p class="text-slate-600">Uses a high-speed, in-memory FAISS vector store to cache claims and accelerate future checks of similar topics.</p>
                 </div>
             </div>
         </section>
@@ -114,30 +100,26 @@
             <h2 class="text-3xl font-bold text-slate-900 text-center mb-4">Fact-Checking Pipeline</h2>
             <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Click on each component of the pipeline to learn more about its role in the system.</p>
             <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                <div class="relative h-[600px] md:h-[400px] flex flex-col md:flex-row justify-around items-center" id="diagram-container">
+                <div class="relative h-auto md:h-[450px] flex flex-col md:flex-row justify-around items-center gap-8 md:gap-4" id="diagram-container">
                     <!-- Nodes -->
-                    <div id="node-1" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-40" data-info="step1">
+                    <div id="node-1" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step1">
                         <p class="font-semibold">User Claim</p>
                         <p class="text-sm text-slate-500">Voice/Text Input</p>
                     </div>
-                    <div id="node-2" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-40" data-info="step2">
-                        <p class="font-semibold">Multi-Source Retrieval</p>
-                        <p class="text-sm text-slate-500">Google Search API</p>
+                    <div id="node-2" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2">
+                        <p class="font-semibold">Web Retrieval</p>
+                        <p class="text-sm text-slate-500">Tavily Search API</p>
                     </div>
-                    <div id="node-3" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-40" data-info="step3">
-                        <p class="font-semibold">Source Vetting</p>
-                        <p class="text-sm text-slate-500">Credibility Check</p>
-                    </div>
-                    <div id="node-4" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-40" data-info="step4">
+                    <div id="node-3" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step3">
                         <p class="font-semibold">Evidence Synthesis</p>
                         <p class="text-sm text-slate-500">Gemini LLM</p>
                     </div>
-                    <div id="node-5" class="diagram-node z-10 bg-cyan-500 text-white rounded-lg p-4 text-center w-40" data-info="step5">
-                        <p class="font-semibold">Interactive Verdict</p>
-                        <p class="text-sm opacity-90">Output</p>
+                    <div id="node-4" class="diagram-node z-10 bg-cyan-500 text-white rounded-lg p-4 text-center w-48" data-info="step4">
+                        <p class="font-semibold">Nuanced Verdict</p>
+                        <p class="text-sm opacity-90">Output with Sources</p>
                     </div>
                 </div>
-                <div id="info-panel" class="mt-8 p-6 bg-slate-100 rounded-lg min-h-[100px] border border-slate-200">
+                <div id="info-panel" class="mt-8 p-6 bg-slate-100 rounded-lg min-h-[120px] border border-slate-200">
                     <p class="text-slate-700 text-center">Select a component to see details.</p>
                 </div>
             </div>
@@ -149,12 +131,12 @@
                 <div>
                     <h2 class="text-3xl font-bold text-slate-800 mb-8">Skills Demonstrated</h2>
                     <ul class="space-y-4">
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Speech-to-Text & NLP</span></li>
                         <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Grounded RAG Pipelines</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Real-Time Information Retrieval</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>AI-based Text Synthesis & Analysis</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>API Integration (Google Gemini)</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Vector Database Caching Strategies</span></li>
+                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Advanced Prompt Engineering (CoT, Self-Consistency)</span></li>
+                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Real-Time API Integration (Tavily, Gemini)</span></li>
+                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>LLM-based Evaluation (Ragas)</span></li>
+                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>High-Performance In-Memory Caching (FAISS)</span></li>
+                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Multimodal I/O (Speech-to-Text, Text-to-Speech)</span></li>
                     </ul>
                 </div>
                 <div>
@@ -164,9 +146,9 @@
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Gradio</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Gemini API</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">LangChain</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">ChromaDB</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">SpeechRecognition</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">gTTS</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Tavily API</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">FAISS</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Ragas</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Hugging Face</div>
                     </div>
                 </div>
@@ -175,7 +157,7 @@
 
         <!-- Implementation Steps -->
         <section id="implementation" class="scroll-mt-16">
-            <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Implementation Roadmap</h2>
+            <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Implementation Journey</h2>
             <div class="max-w-3xl mx-auto space-y-4" id="accordion-container">
                 <!-- Accordion items will be injected here by JS -->
             </div>
@@ -184,7 +166,7 @@
     </main>
 
     <footer class="text-center p-8 bg-slate-900 text-slate-400 mt-16">
-        <p>&copy; 2025 - A Generative AI Project Showcase.</p>
+        <p>&copy; 2025 - An Advanced Generative AI Project Showcase.</p>
     </footer>
 
 <script>
@@ -196,33 +178,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const infoContent = {
         step1: {
             title: 'Step 1: User Claim Input',
-            text: 'The process starts with a user submitting a statement or question they want to fact-check. The interface will accept input via both a standard text box and a microphone for voice input, which is then converted to text.'
+            text: 'The process begins when a user submits a claim via text or a high-quality audio recording. The audio is converted to text using a speech recognition library, providing a clean input for the pipeline.'
         },
         step2: {
-            title: 'Step 2: Multi-Source Retrieval',
-            text: 'The system uses the Gemini API with Google Search grounding enabled. This allows it to perform a real-time, comprehensive search across the web to find a diverse set of relevant articles, studies, and reports related to the user\'s claim.'
+            title: 'Step 2: Web Retrieval & Vetting',
+            text: 'The system uses the Tavily Search API to perform a live web search for relevant evidence. The returned URLs are then filtered against a list of reputable domains to prioritize credible sources.'
         },
         step3: {
-            title: 'Step 3: Source Vetting & Evidence Caching',
-            text: 'This is a critical step. The system analyzes the retrieved sources, checking their domains against a predefined list of reputable and unreliable websites. High-quality evidence snippets are extracted, converted to embeddings, and cached in a ChromaDB vector database for future use.'
+            title: 'Step 3: Evidence Synthesis & Self-Consistency',
+            text: 'The content from vetted sources is sent to the Gemini LLM. The model is prompted three times in parallel to analyze the evidence and form a conclusion. This self-consistency check ensures the final verdict is reliable and not an anomaly.'
         },
         step4: {
-            title: 'Step 4: Evidence Synthesis with LLM',
-            text: 'The vetted evidence, original claim, and a complex prompt are sent to the Gemini model. The prompt instructs the model to act as an impartial fact-checker, analyze the evidence for consensus and contradiction, and formulate a reasoned conclusion.'
-        },
-        step5: {
-            title: 'Step 5: Interactive Verdict & Explanation',
-            text: 'The final output is presented to the user. It includes a clear verdict (e.g., True, False, Misleading), a detailed, AI-generated explanation of the reasoning, and a complete list of the sources that were used to arrive at the conclusion.'
+            title: 'Step 4: Verdict, Evaluation & Caching',
+            text: 'The system determines the majority verdict from the multiple LLM responses. This final, consistent answer is logged and evaluated with Ragas for quality metrics. The claim is then cached in a FAISS database to speed up future, similar queries.'
         }
     };
     
     const implementationSteps = [
-        { title: '1. Setup & API Configuration', content: 'Set up a Python environment and configure access to the Google Gemini API. Install speech recognition/synthesis libraries and a local instance of ChromaDB for vector storage.' },
-        { title: '2. Build the Retrieval Core', content: 'Develop the function to take a user query and call the Gemini API with search grounding enabled. Process the API response to extract source URLs and content snippets.' },
-        { title: '3. Implement Source Credibility Logic', content: 'Create a module that maintains lists of reliable and unreliable domains. This module will filter and prioritize the sources returned by the search API.' },
-        { title: '4. Design the Synthesis Prompt', content: 'Craft a detailed system prompt for the Gemini model that guides it to act as a fact-checker, instructing it to base its verdict solely on the provided evidence and to generate a structured, well-reasoned explanation.' },
-        { title: '5. Develop the Caching Mechanism', content: 'Integrate ChromaDB to store embeddings of the vetted evidence snippets. Before performing a web search, the system should first check the database for relevant cached information.' },
-        { title: '6. Create the User Interface', content: 'Use Gradio or Streamlit to build a simple front-end where a user can input a claim via text or voice, and view the structured, interactive verdict and source list.' }
+        { title: '1. Initial Setup & API Configuration', content: 'Configured the development environment and secured API keys for Gemini and Tavily. Established the core Gradio interface for basic text and audio I/O.' },
+        { title: '2. Building the RAG Core with Tavily', content: 'Replaced an unreliable web scraper with the robust Tavily Search API via LangChain. Developed a function to extract and clean text content from retrieved URLs.' },
+        { title: '3. Self-Consistency Implementation', content: 'The synthesis step queries the Gemini LLM multiple times in parallel for the same claim. A custom logic module then parses these responses and selects the majority verdict, significantly improving the reliability of the final answer.' },
+        { title: '4. High-Quality TTS Integration', content: 'High-quality, natural-sounding voice responses are generated using a local Hugging Face Transformers pipeline (fastspeech2), offering a more responsive and better user experience than basic text-to-speech libraries.' },
+        { title: '5. Adding Evaluation with Ragas', content: 'Built a custom adapter to make the Gemini LLM compatible with the Ragas framework. Integrated logging and a simulation function to evaluate the faithfulness and relevancy of every generated response.' },
+        { title: '6. Optimizing with FAISS Caching', content: 'Swapped the on-disk ChromaDB with the faster, in-memory FAISS vector store to create a more efficient caching layer for frequently checked claims.' }
     ];
 
     diagramNodes.forEach(node => {
@@ -235,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    implementationSteps.forEach((step, index) => {
+    implementationSteps.forEach((step) => {
         const item = document.createElement('div');
         item.className = 'bg-white rounded-lg shadow-sm border border-slate-200';
         item.innerHTML = `
