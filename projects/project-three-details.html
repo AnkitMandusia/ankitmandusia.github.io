@@ -1,258 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Showcase: Veracity Engine - AI Fact-Checker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
-            color: #1e293b; /* slate-800 */
-        }
-        .diagram-node {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .diagram-node:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-        .diagram-node.active {
-            background-color: #0891b2; /* cyan-600 */
-            color: #ffffff;
-            border-color: #0e7490; /* cyan-700 */
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .accordion-button.open + .accordion-content {
-            max-height: 500px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Showcase: Veracity Engine - AI Fact-Checker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .diagram-node {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .diagram-node:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    .diagram-node.active {
+      background-color: #0891b2;
+      color: #ffffff;
+      border-color: #0e7490;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+    }
+    .accordion-button.open + .accordion-content {
+      max-height: 500px;
+    }
+  </style>
 </head>
 <body class="antialiased">
 
-    <main class="container mx-auto px-4 py-8 md:py-16">
-        
-        <!-- Hero Section -->
-        <header class="text-center mb-16 md:mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Veracity Engine: AI-Powered Fact-Checker</h1>
-            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An advanced RAG pipeline that verifies claims against real-time web evidence, analyzes source credibility, and ensures response reliability with self-consistency checks.</p>
-        </header>
+  <main class="container mx-auto px-4 py-8 md:py-16">
+    
+    <!-- Hero -->
+    <header class="text-center mb-16 md:mb-24">
+      <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Veracity Engine: AI-Powered Fact-Checker</h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        A next-generation RAG pipeline that verifies claims against real-time web evidence, vets sources, and applies LLM-based evaluation with self-consistency to ensure trustworthy verdicts.
+      </p>
+    </header>
 
-        <!-- Project Overview Section -->
-        <section id="overview" class="mb-16 md:mb-24 scroll-mt-16">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Project Overview</h2>
-                    <p class="text-slate-600 leading-relaxed">
-                        The Veracity Engine is a sophisticated tool that goes beyond a simple "true/false" verdict. When a user submits a claim via voice or text, the system performs real-time web searches using the Tavily API, vets the credibility of the sources, and extracts relevant evidence. It then employs advanced AI patterns like **Chain-of-Thought** and **Self-Consistency** with the Gemini LLM to generate a nuanced, reliable verdict with a detailed explanation and full source transparency.
-                    </p>
-                </div>
-                <div class="flex justify-center items-center">
-                    <div class="text-center p-8 bg-cyan-500 rounded-full w-64 h-64 flex flex-col justify-center items-center shadow-lg">
-                        <span class="text-6xl mb-2">🔎</span>
-                        <h3 class="text-2xl font-bold text-white">Veracity Engine</h3>
-                        <p class="text-white opacity-90">Evidence-Based Verification</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Overview -->
+    <section id="overview" class="mb-16 md:mb-24 scroll-mt-16">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+          <h2 class="text-3xl font-bold text-slate-800 mb-4">Project Overview</h2>
+          <p class="text-slate-600 leading-relaxed">
+            Users submit a claim via text or voice. The system performs real-time web retrieval using the Tavily API, vets results against a trusted domain list, and extracts clean text with requests + BeautifulSoup. 
+            The Gemini LLM is queried multiple times in parallel, and a majority vote determines the verdict. Each answer is then evaluated using keyword overlap and LLM-as-a-judge metrics for quality, grounding, consistency, and relevance, with results logged for transparency.
+          </p>
+        </div>
+        <div class="flex justify-center items-center">
+          <div class="text-center p-8 bg-cyan-500 rounded-full w-64 h-64 flex flex-col justify-center items-center shadow-lg">
+            <span class="text-6xl mb-2">🔎</span>
+            <h3 class="text-2xl font-bold text-white">Veracity Engine</h3>
+            <p class="text-white opacity-90">Evidence-Based AI Fact-Checking</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Key Features Section -->
-        <section id="features" class="mb-16 md:mb-24 scroll-mt-16">
-            <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Key Features</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🗣️ Multimodal Input</h3>
-                    <p class="text-slate-600">Accepts user claims through both typed text and high-quality spoken audio for maximum accessibility.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🌐 Live Web Search</h3>
-                    <p class="text-slate-600">Utilizes the Tavily Search API to gather the latest, most relevant information from across the web.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🛡️ Source Vetting</h3>
-                    <p class="text-slate-600">Automatically prioritizes information from a predefined list of reputable domains to improve reliability.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">⚙️ Self-Consistency</h3>
-                    <p class="text-slate-600">Queries the LLM multiple times in parallel and selects the majority verdict to reduce errors and hallucinations.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🧪 RAG Evaluation</h3>
-                    <p class="text-slate-600">Integrates Ragas for on-the-fly evaluation of each response, logging key metrics like faithfulness and relevancy.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">⚡ FAISS Caching</h3>
-                    <p class="text-slate-600">Uses a high-speed, in-memory FAISS vector store to cache claims and accelerate future checks of similar topics.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Features -->
+    <section id="features" class="mb-16 md:mb-24 scroll-mt-16">
+      <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Key Features</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-xl font-semibold mb-2">🗣️ Multimodal Input</h3><p>Accepts typed claims and spoken audio (via SpeechRecognition + pydub).</p></div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-xl font-semibold mb-2">🌐 Real-Time Retrieval</h3><p>Performs live evidence search via Tavily API with requests fallback.</p></div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-xl font-semibold mb-2">🛡️ Source Vetting</h3><p>Prioritizes evidence from a vetted list of credible domains.</p></div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-xl font-semibold mb-2">⚙️ Self-Consistency</h3><p>Queries Gemini multiple times and applies majority voting.</p></div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-xl font-semibold mb-2">📊 LLM-based Evaluation</h3><p>Combines keyword overlap + LLM-as-a-judge scoring for correctness and grounding.</p></div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-xl font-semibold mb-2">⚡ Smart Caching</h3><p>Uses FAISS vector store for in-memory caching of past claims.</p></div>
+      </div>
+    </section>
 
-        <!-- Interactive Architecture Diagram -->
-        <section id="architecture" class="mb-16 md:mb-24 scroll-mt-16">
-            <h2 class="text-3xl font-bold text-slate-900 text-center mb-4">Fact-Checking Pipeline</h2>
-            <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Click on each component of the pipeline to learn more about its role in the system.</p>
-            <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                <div class="relative h-auto md:h-[450px] flex flex-col md:flex-row justify-around items-center gap-8 md:gap-4" id="diagram-container">
-                    <!-- Nodes -->
-                    <div id="node-1" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step1">
-                        <p class="font-semibold">User Claim</p>
-                        <p class="text-sm text-slate-500">Voice/Text Input</p>
-                    </div>
-                    <div id="node-2" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2">
-                        <p class="font-semibold">Web Retrieval</p>
-                        <p class="text-sm text-slate-500">Tavily Search API</p>
-                    </div>
-                    <div id="node-3" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step3">
-                        <p class="font-semibold">Evidence Synthesis</p>
-                        <p class="text-sm text-slate-500">Gemini LLM</p>
-                    </div>
-                    <div id="node-4" class="diagram-node z-10 bg-cyan-500 text-white rounded-lg p-4 text-center w-48" data-info="step4">
-                        <p class="font-semibold">Nuanced Verdict</p>
-                        <p class="text-sm opacity-90">Output with Sources</p>
-                    </div>
-                </div>
-                <div id="info-panel" class="mt-8 p-6 bg-slate-100 rounded-lg min-h-[120px] border border-slate-200">
-                    <p class="text-slate-700 text-center">Select a component to see details.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Diagram -->
+    <section id="architecture" class="mb-16 md:mb-24 scroll-mt-16">
+      <h2 class="text-3xl font-bold text-slate-900 text-center mb-4">Fact-Checking Pipeline</h2>
+      <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Click a stage below to explore its function in the pipeline.</p>
+      <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+        <div class="relative flex flex-col md:flex-row justify-around items-center gap-8 md:gap-4">
+          <div id="node-1" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step1"><p class="font-semibold">User Claim</p><p class="text-sm text-slate-500">Text/Voice Input</p></div>
+          <div id="node-2" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2"><p class="font-semibold">Evidence Retrieval</p><p class="text-sm text-slate-500">Tavily + Requests</p></div>
+          <div id="node-3" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step3"><p class="font-semibold">LLM Analysis</p><p class="text-sm text-slate-500">Gemini + Voting</p></div>
+          <div id="node-4" class="diagram-node bg-cyan-500 text-white rounded-lg p-4 text-center w-48" data-info="step4"><p class="font-semibold">Verdict</p><p class="text-sm opacity-90">Sources + Scores</p></div>
+        </div>
+        <div id="info-panel" class="mt-8 p-6 bg-slate-100 rounded-lg min-h-[120px] border border-slate-200"><p class="text-slate-700 text-center">Select a component to see details.</p></div>
+      </div>
+    </section>
 
-        <!-- Tech Stack & Skills Section -->
-        <section id="tech" class="mb-16 md:mb-24 scroll-mt-16">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-3xl font-bold text-slate-800 mb-8">Skills Demonstrated</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Grounded RAG Pipelines</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Advanced Prompt Engineering (CoT, Self-Consistency)</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Real-Time API Integration (Tavily, Gemini)</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>LLM-based Evaluation (Ragas)</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>High-Performance In-Memory Caching (FAISS)</span></li>
-                        <li class="flex items-center"><span class="bg-cyan-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-4">✓</span><span>Multimodal I/O (Speech-to-Text, Text-to-Speech)</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h2 class="text-3xl font-bold text-slate-800 mb-8">Technology Stack</h2>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Python</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Gradio</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Gemini API</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">LangChain</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Tavily API</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">FAISS</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Ragas</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm border border-slate-200 hover:bg-slate-50 transition-colors">Hugging Face</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Skills & Stack -->
+    <section id="tech" class="mb-16 md:mb-24 scroll-mt-16">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl font-bold text-slate-800 mb-8">Skills Demonstrated</h2>
+          <ul class="space-y-4">
+            <li>✓ RAG Pipeline Construction</li>
+            <li>✓ Prompt Engineering (CoT, Self-Consistency)</li>
+            <li>✓ Real-Time Retrieval (Tavily API, requests, BeautifulSoup)</li>
+            <li>✓ LLM-based Evaluation (Keyword Overlap + Judge Model)</li>
+            <li>✓ Logging & Evaluation Metrics</li>
+            <li>✓ Multimodal Input/Output (STT, TTS)</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold text-slate-800 mb-8">Technology Stack</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-lg text-center border">Python</div>
+            <div class="bg-white p-4 rounded-lg text-center border">Gradio</div>
+            <div class="bg-white p-4 rounded-lg text-center border">Gemini API</div>
+            <div class="bg-white p-4 rounded-lg text-center border">LangChain</div>
+            <div class="bg-white p-4 rounded-lg text-center border">Tavily API</div>
+            <div class="bg-white p-4 rounded-lg text-center border">FAISS</div>
+            <div class="bg-white p-4 rounded-lg text-center border">NLTK</div>
+            <div class="bg-white p-4 rounded-lg text-center border">SpeechRecognition</div>
+            <div class="bg-white p-4 rounded-lg text-center border">gTTS</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Implementation Steps -->
-        <section id="implementation" class="scroll-mt-16">
-            <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Implementation Journey</h2>
-            <div class="max-w-3xl mx-auto space-y-4" id="accordion-container">
-                <!-- Accordion items will be injected here by JS -->
-            </div>
-        </section>
+  </main>
 
-    </main>
-
-    <footer class="text-center p-8 bg-slate-900 text-slate-400 mt-16">
-        <p>&copy; 2025 - An Advanced Generative AI Project Showcase.</p>
-    </footer>
+  <footer class="text-center p-8 bg-slate-900 text-slate-400 mt-16">
+    <p>&copy; 2025 - Veracity Engine Showcase</p>
+  </footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const diagramNodes = document.querySelectorAll('.diagram-node');
-    const infoPanel = document.getElementById('info-panel');
-    const accordionContainer = document.getElementById('accordion-container');
+  const diagramNodes = document.querySelectorAll('.diagram-node');
+  const infoPanel = document.getElementById('info-panel');
 
-    const infoContent = {
-        step1: {
-            title: 'Step 1: User Claim Input',
-            text: 'The process begins when a user submits a claim via text or a high-quality audio recording. The audio is converted to text using a speech recognition library, providing a clean input for the pipeline.'
-        },
-        step2: {
-            title: 'Step 2: Web Retrieval & Vetting',
-            text: 'The system uses the Tavily Search API to perform a live web search for relevant evidence. The returned URLs are then filtered against a list of reputable domains to prioritize credible sources.'
-        },
-        step3: {
-            title: 'Step 3: Evidence Synthesis & Self-Consistency',
-            text: 'The content from vetted sources is sent to the Gemini LLM. The model is prompted three times in parallel to analyze the evidence and form a conclusion. This self-consistency check ensures the final verdict is reliable and not an anomaly.'
-        },
-        step4: {
-            title: 'Step 4: Verdict, Evaluation & Caching',
-            text: 'The system determines the majority verdict from the multiple LLM responses. This final, consistent answer is logged and evaluated with Ragas for quality metrics. The claim is then cached in a FAISS database to speed up future, similar queries.'
-        }
-    };
-    
-    const implementationSteps = [
-        { title: '1. Initial Setup & API Configuration', content: 'Configured the development environment and secured API keys for Gemini and Tavily. Established the core Gradio interface for basic text and audio I/O.' },
-        { title: '2. Building the RAG Core with Tavily', content: 'Replaced an unreliable web scraper with the robust Tavily Search API via LangChain. Developed a function to extract and clean text content from retrieved URLs.' },
-        { title: '3. Self-Consistency Implementation', content: 'The synthesis step queries the Gemini LLM multiple times in parallel for the same claim. A custom logic module then parses these responses and selects the majority verdict, significantly improving the reliability of the final answer.' },
-        { title: '4. High-Quality TTS Integration', content: 'High-quality, natural-sounding voice responses are generated using a local Hugging Face Transformers pipeline (fastspeech2), offering a more responsive and better user experience than basic text-to-speech libraries.' },
-        { title: '5. Adding Evaluation with Ragas', content: 'Built a custom adapter to make the Gemini LLM compatible with the Ragas framework. Integrated logging and a simulation function to evaluate the faithfulness and relevancy of every generated response.' },
-        { title: '6. Optimizing with FAISS Caching', content: 'Swapped the on-disk ChromaDB with the faster, in-memory FAISS vector store to create a more efficient caching layer for frequently checked claims.' }
-    ];
+  const infoContent = {
+    step1: { title: 'User Claim Input', text: 'Accepts claims via text or audio. Audio is transcribed with SpeechRecognition + pydub for clean input.' },
+    step2: { title: 'Web Retrieval & Vetting', text: 'Performs live search with Tavily API, then extracts text via requests + BeautifulSoup. Prioritizes trusted sources.' },
+    step3: { title: 'Evidence Analysis', text: 'Gemini is queried multiple times in parallel. Majority voting ensures consistency and reduces hallucinations.' },
+    step4: { title: 'Verdict & Evaluation', text: 'Final verdict with sources. Evaluated using keyword overlap + LLM-as-a-judge for content quality, grounding, consistency, and relevance. Logged for auditing.' }
+  };
 
-    diagramNodes.forEach(node => {
-        node.addEventListener('click', () => {
-            diagramNodes.forEach(n => n.classList.remove('active'));
-            node.classList.add('active');
-            const infoKey = node.dataset.info;
-            const content = infoContent[infoKey];
-            infoPanel.innerHTML = `<h4 class="font-bold text-lg mb-2 text-slate-800">${content.title}</h4><p class="text-slate-700">${content.text}</p>`;
-        });
+  diagramNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      diagramNodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+      const content = infoContent[node.dataset.info];
+      infoPanel.innerHTML = `<h4 class="font-bold mb-2">${content.title}</h4><p>${content.text}</p>`;
     });
-    
-    implementationSteps.forEach((step) => {
-        const item = document.createElement('div');
-        item.className = 'bg-white rounded-lg shadow-sm border border-slate-200';
-        item.innerHTML = `
-            <button class="accordion-button w-full text-left p-4 font-semibold text-slate-700 flex justify-between items-center">
-                <span>${step.title}</span>
-                <span class="transform transition-transform duration-300 text-cyan-600 text-xl">+</span>
-            </button>
-            <div class="accordion-content px-4">
-                <p class="py-4 text-slate-600 border-t border-slate-200">${step.content}</p>
-            </div>
-        `;
-        accordionContainer.appendChild(item);
-    });
-
-    accordionContainer.addEventListener('click', (e) => {
-        const button = e.target.closest('.accordion-button');
-        if (button) {
-            const allButtons = accordionContainer.querySelectorAll('.accordion-button');
-            const wasOpen = button.classList.contains('open');
-
-            allButtons.forEach(b => {
-                b.classList.remove('open');
-                const icon = b.querySelector('span:last-child');
-                icon.textContent = '+';
-                icon.classList.remove('rotate-45');
-            });
-
-            if (!wasOpen) {
-                button.classList.add('open');
-                const icon = button.querySelector('span:last-child');
-                icon.textContent = '+';
-                icon.classList.add('rotate-45');
-            }
-        }
-    });
-
+  });
 });
 </script>
 
 </body>
 </html>
-
