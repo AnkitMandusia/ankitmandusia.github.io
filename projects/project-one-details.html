@@ -40,7 +40,7 @@
         
         <header class="text-center mb-16 md:mb-24">
             <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-4">🪐 Kepler Financial Analyst</h1>
-            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An advanced multi-agent AI system for interactive analysis and visualization of SEC filings.</p>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An advanced multi-agent AI system with a hybrid RAG pipeline for deep analysis of SEC filings.</p>
         </header>
 
         <section id="overview" class="mb-16 md:mb-24 scroll-mt-16">
@@ -48,14 +48,14 @@
                 <div class="bg-white p-8 rounded-xl shadow-sm">
                     <h2 class="text-3xl font-bold text-slate-800 mb-4">Project Overview</h2>
                     <p class="text-slate-600 leading-relaxed">
-                        Kepler is a web application designed to answer complex questions about corporate financial documents. The system uses a **multi-agent architecture** where different AI specialists collaborate to handle user requests. Instead of just searching for text, it can understand a user's intent, extract structured data from financial tables, and generate both natural language answers and interactive data visualizations on the fly.
+                        Kepler is an advanced web application that answers complex questions about corporate financial documents. The system uses a **hybrid RAG architecture**, enriching semantic search with a **dynamically constructed Knowledge Graph**. This allows the AI to understand not just the text, but the relationships between key financial entities, leading to highly accurate and context-aware responses, including on-the-fly data visualizations.
                     </p>
                 </div>
                 <div class="flex justify-center items-center">
                     <div class="text-center p-8 bg-amber-400 rounded-full w-64 h-64 flex flex-col justify-center items-center shadow-lg">
-                        <span class="text-6xl mb-2">🚀</span>
-                        <h3 class="text-2xl font-bold text-white">Multi-Agent AI</h3>
-                        <p class="text-white opacity-90">Reliable & Accurate</p>
+                        <span class="text-6xl mb-2">💡</span>
+                        <h3 class="text-2xl font-bold text-white">Hybrid GraphRAG</h3>
+                        <p class="text-white opacity-90">Deep Contextual Insight</p>
                     </div>
                 </div>
             </div>
@@ -63,66 +63,52 @@
 
         <section id="features" class="mb-16 md:mb-24 scroll-mt-16">
             <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Key Features</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📄 HTML Document Processing</h3>
-                    <p class="text-slate-600">Ingests modern SEC filings in their native HTML format, preserving table structures for analysis.</p>
-                </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
                     <h3 class="text-xl font-semibold text-slate-700 mb-2">🤖 Multi-Agent System</h3>
-                    <p class="text-slate-600">Uses specialist AI agents for routing, data extraction, and text generation for higher accuracy and reliability.</p>
+                    <p class="text-slate-600">Uses specialist AI agents for routing, data extraction, and text generation for higher accuracy.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🕸️ Knowledge Graph</h3>
+                    <p class="text-slate-600">Dynamically builds a knowledge graph from the text to understand relationships between entities.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
                     <h3 class="text-xl font-semibold text-slate-700 mb-2">📊 On-the-Fly Visualizations</h3>
-                    <p class="text-slate-600">Translates natural language questions (e.g., "chart the net income") into interactive plots using Plotly.</p>
+                    <p class="text-slate-600">Translates natural language questions into interactive plots using Plotly.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🔍 Advanced RAG</h3>
-                    <p class="text-slate-600">Combines semantic search on a vector database with structured table lookups for highly contextual answers.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">💬 Interactive Chat UI</h3>
-                    <p class="text-slate-600">A dynamic Streamlit interface with streaming responses and a modern, user-friendly design.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <h3 class="text-xl font-semibold text-slate-700 mb-2">📚 Source Citation</h3>
-                    <p class="text-slate-600">Every text-based answer is backed by direct quotes from the source document for verification and trust.</p>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">🎯 Quantitative Evaluation</h3>
+                    <p class="text-slate-600">Achieved an **80% Factual Correctness Score** using a rigorous, LLM-as-judge (RAGAS) evaluation.</p>
                 </div>
             </div>
         </section>
 
         <section id="architecture" class="mb-16 md:mb-24 scroll-mt-16">
-            <h2 class="text-3xl font-bold text-slate-800 text-center mb-4">Interactive Multi-Agent Architecture</h2>
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-4">Interactive Hybrid RAG Architecture</h2>
             <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Click on each component of the pipeline to learn more about its role.</p>
             <div class="bg-white p-8 rounded-xl shadow-lg">
                 <div class="relative h-auto md:h-[450px] flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0" id="diagram-container">
                     <div id="node-1" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step1">
-                        <p class="font-semibold">User Prompt & RAG</p>
-                        <p class="text-sm text-slate-500">Question + Context</p>
-                    </div>
-                    <div id="node-2" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2">
-                        <p class="font-semibold">Router Agent</p>
-                        <p class="text-sm text-slate-500">Intent Classification</p>
+                        <p class="font-semibold">Document Processing</p>
+                        <p class="text-sm text-slate-500">Text & Table Extraction</p>
                     </div>
                     <div class="z-10 flex flex-col gap-4">
+                        <div id="node-2" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step2">
+                            <p class="font-semibold">Vector Database</p>
+                            <p class="text-sm text-slate-500">Semantic Search</p>
+                        </div>
                         <div id="node-3" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step3">
-                            <p class="font-semibold">Answer Agent</p>
-                            <p class="text-sm text-slate-500">Generates Text</p>
-                        </div>
-                        <div id="node-4" class="diagram-node bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step4">
-                            <p class="font-semibold">Chart Agent</p>
-                            <p class="text-sm text-slate-500">Extracts Data</p>
+                            <p class="font-semibold">Knowledge Graph</p>
+                            <p class="text-sm text-slate-500">Relational Context</p>
                         </div>
                     </div>
-                    <div class="z-10 flex flex-col gap-4">
-                         <div id="node-5" class="diagram-node bg-amber-400 text-white rounded-lg p-4 text-center w-48" data-info="step5">
-                            <p class="font-semibold">Text Response</p>
-                            <p class="text-sm opacity-90">With Citations</p>
-                        </div>
-                         <div id="node-6" class="diagram-node bg-amber-400 text-white rounded-lg p-4 text-center w-48" data-info="step6">
-                            <p class="font-semibold">Interactive Chart</p>
-                            <p class="text-sm opacity-90">Built with Plotly</p>
-                        </div>
+                    <div id="node-4" class="diagram-node z-10 bg-slate-100 border-2 border-slate-300 rounded-lg p-4 text-center w-48" data-info="step4">
+                        <p class="font-semibold">Multi-Agent System</p>
+                        <p class="text-sm text-slate-500">Router & Specialists</p>
+                    </div>
+                     <div id="node-5" class="diagram-node z-10 bg-amber-400 text-white rounded-lg p-4 text-center w-48" data-info="step5">
+                        <p class="font-semibold">Final Output</p>
+                        <p class="text-sm opacity-90">Answer or Chart</p>
                     </div>
                 </div>
                 <div id="info-panel" class="mt-8 p-6 bg-stone-100 rounded-lg min-h-[100px] border border-stone-200">
@@ -137,9 +123,9 @@
                     <h2 class="text-3xl font-bold text-slate-800 mb-8">Skills Demonstrated</h2>
                     <ul class="space-y-4 text-slate-700">
                         <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Multi-Agent AI Systems</span></li>
-                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Advanced RAG Pipelines</span></li>
-                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Natural Language to SQL/Query</span></li>
-                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Vector Database Management (Qdrant)</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Hybrid RAG (Vector + Graph)</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>Knowledge Graph Construction</span></li>
+                        <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>LLM-based Evaluation (RAGAS)</span></li>
                         <li class="flex items-center"><span class="bg-amber-400 text-white rounded-full w-6 h-6 text-center mr-4 flex-shrink-0">✓</span><span>LLM Orchestration (LangChain)</span></li>
                     </ul>
                 </div>
@@ -150,11 +136,28 @@
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">LangChain</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Hugging Face</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Qdrant</div>
+                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">NetworkX</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Pandas</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Streamlit</div>
                         <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">Plotly</div>
-                        <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:bg-slate-50 transition-colors">PyTorch</div>
                     </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="evaluation" class="mb-16 md:mb-24 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Quantitative Evaluation</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 items-center bg-white p-8 rounded-xl shadow-sm">
+                <div class="md:col-span-1 text-center">
+                    <div class="text-6xl font-bold text-amber-500">80%</div>
+                    <div class="text-xl font-semibold text-slate-700 mt-2">Factual Correctness</div>
+                    <p class="text-sm text-slate-500">on a blind test set</p>
+                </div>
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">LLM-as-Judge Methodology</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        To ensure the system's reliability, a rigorous evaluation was performed. A "golden dataset" of question-answer pairs was created manually. The system's generated answers were then compared against this ground truth using a powerful LLM as an impartial judge. This RAGAS-style approach provides a quantitative measure of the system's factual accuracy, moving beyond subjective evaluation.
+                    </p>
                 </div>
             </div>
         </section>
@@ -179,38 +182,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const infoContent = {
         step1: {
-            title: 'Step 1: User Prompt & RAG',
-            text: 'The process starts with the user\'s question. The system performs a semantic search on the Qdrant vector database to retrieve the most relevant text chunks from the document, providing rich context for the AI agents.'
+            title: 'Step 1: Document Processing',
+            text: 'The system ingests the raw HTML SEC filing. It uses Pandas to automatically find and parse all financial tables, while simultaneously chunking the unstructured text for language model processing.'
         },
         step2: {
-            title: 'Step 2: The Router Agent',
-            text: 'The user question and its context are sent to the first specialist: the Router Agent. Its only job is to classify the user\'s intent as either "text" or "chart". This simple, focused task ensures high accuracy.'
+            title: 'Step 2: Vector Database Indexing',
+            text: 'Each text chunk is converted into a numerical vector (embedding) and stored in a Qdrant vector database. This enables high-speed semantic search to find text relevant to a user\'s query.'
         },
         step3: {
-            title: 'Step 3: The Answer Agent',
-            text: 'If the intent is "text", the Answer Agent is activated. It receives the context and the question, and its sole purpose is to generate a comprehensive, well-formatted text answer with source citations.'
+            title: 'Step 3: Knowledge Graph Construction',
+            text: 'An LLM extracts key entities and relationships from the text. This structured data is used to build a Knowledge Graph with NetworkX, providing deep relational context that simple semantic search misses.'
         },
         step4: {
-            title: 'Step 4: The Chart Agent',
-            text: 'If the intent is "chart", the Chart Agent is activated. Its only job is to translate the user\'s natural language request (e.g., "chart the net income") into a structured query that the Python backend can use.'
+            title: 'Step 4: The Multi-Agent System',
+            text: 'When a user asks a question, the system retrieves context from both the vector DB and the knowledge graph. This hybrid context is passed to a Router Agent, which delegates the task to a specialist for answering or charting.'
         },
         step5: {
-            title: 'Step 5: Text Response',
-            text: 'The final text answer, generated by the Answer Agent, is streamed token-by-token to the Streamlit UI, providing an interactive and responsive user experience.'
-        },
-        step6: {
-            title: 'Step 6: Interactive Chart Generation',
-            text: 'The Python backend receives the structured query from the Chart Agent. It then uses Pandas to find and process the data from pre-parsed tables and Plotly to build a beautiful, interactive visualization.'
+            title: 'Step 5: Final Output Generation',
+            text: 'The specialist agent generates the final output. For text, it provides a cited answer. For charts, it generates a query that the Python backend uses with Plotly to render a reliable and accurate visualization.'
         }
     };
     
     const implementationSteps = [
-        { title: '1. Environment & Data Ingestion', content: 'Set up a Python environment and all libraries. Developed a robust script to download the HTML SEC filing and pre-process all tables into Pandas DataFrames for analysis.' },
-        { title: '2. Vector Database & RAG Core', content: 'Used LangChain to chunk the document, generate text embeddings with Hugging Face models, and build a Qdrant vector database for efficient semantic retrieval.' },
-        { title: '3. Multi-Agent System Design', content: 'Designed and implemented the core logic with specialist AI agents (Router, Answer, Chart) to ensure reliability and accuracy, moving beyond a single-prompt approach.' },
-        { title: '4. Natural Language to Query', content: 'Developed a sophisticated prompt for the Chart Agent to translate user requests into structured queries, allowing Python to handle the data processing and plotting.' },
+        { title: '1. Data Ingestion & Pre-processing', content: 'Developed a robust script to ingest the HTML SEC filing, automatically parsing all tables with Pandas and chunking text with LangChain.' },
+        { title: '2. Hybrid Context Generation', content: 'Built two parallel pipelines: one to create a Qdrant vector store for semantic search, and another to use an LLM to extract and build a NetworkX knowledge graph.' },
+        { title: '3. Multi-Agent System Design', content: 'Designed and implemented the core logic with specialist AI agents (Router, Answer, Chart) to ensure reliability and accuracy.' },
+        { title: '4. Natural Language to Query', content: 'Developed a sophisticated prompt for the Chart Agent to translate user requests into structured queries, allowing Python to handle all data processing and plotting.' },
         { title: '5. UI/UX Development in Streamlit', content: 'Built a polished, interactive chat interface using Streamlit, featuring streaming responses, dynamic send/stop buttons, and a custom theme.' },
-        { title: '6. Deployment and Iteration', content: 'Deployed the application using ngrok for public access. Iteratively debugged and refined the prompts and Python logic based on real-world testing to handle edge cases and improve reliability.' }
+        { title: '6. Quantitative Evaluation (RAGAS)', content: 'Created a golden dataset of Q&A pairs and implemented an LLM-as-judge pipeline to quantitatively measure the system\'s factual accuracy, achieving an 80% score.' }
     ];
 
     diagramNodes.forEach(node => {
