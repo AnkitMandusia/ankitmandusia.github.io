@@ -1,1 +1,398 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase: Q-OptiFolio - An Agentic AI & Quantum Computing Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* A lighter, softer slate */
+            color: #334155; /* slate-700 */
+        }
+        .section-title {
+            background: linear-gradient(to right, #0ea5e9, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .tooltip {
+            position: fixed;
+            background-color: #0f172a;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            transform: translate(-50%, -100%) scale(0.95);
+            white-space: pre-wrap;
+            max-width: 320px;
+            z-index: 50;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .scroll-observer {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-observer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Sticky Nav */
+        #side-nav {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 40;
+        }
+        #side-nav.visible { opacity: 1; }
+        .nav-dot {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: #cbd5e1; /* slate-300 */
+            border-radius: 50%;
+            margin: 16px 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-dot:hover {
+            background-color: #0ea5e9; /* sky-500 */
+        }
+        .nav-dot.active {
+            background-color: #0284c7; /* sky-600 */
+            transform: scale(1.5);
+        }
+        .nav-dot .nav-label {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            background-color: #1e293b;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .nav-dot:hover .nav-label {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Logo Animation */
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        .logo-q, .logo-a {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: 800;
+        }
+        .logo-q {
+            color: #0ea5e9;
+            animation: rotate-q 8s linear infinite;
+        }
+        .logo-a {
+            color: #14b8a6;
+            animation: rotate-a 8s linear infinite reverse;
+        }
+        .logo-q::before { content: 'Q'; }
+        .logo-a::before { content: 'F'; }
+        @keyframes rotate-q {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        @keyframes rotate-a {
+            0% { transform: rotate(0deg) scale(1.2); }
+            50% { transform: rotate(-180deg) scale(1); }
+            100% { transform: rotate(-360deg) scale(1.2); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Sticky Side Navigation -->
+    <nav id="side-nav">
+        <a href="#overview" class="nav-dot active" data-section="overview"><span class="nav-label">Overview</span></a>
+        <a href="#pipeline" class="nav-dot" data-section="pipeline"><span class="nav-label">Project Pipeline</span></a>
+        <a href="#details" class="nav-dot" data-section="details"><span class="nav-label">Technical Deep Dive</span></a>
+        <a href="#stack" class="nav-dot" data-section="stack"><span class="nav-label">Technology Stack</span></a>
+    </nav>
+    
+    <!-- Tooltip Element -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <main class="container mx-auto px-4">
+        
+        <!-- Hero Section -->
+        <header class="text-center h-screen flex flex-col justify-center items-center">
+            <div class="logo-container mb-6">
+                <div class="logo-q"></div>
+                <div class="logo-a"></div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-teal-500 mb-4">
+                Q-OptiFolio
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                An advanced, autonomous cryptocurrency portfolio optimization engine powered by Agentic AI and Quantum Computing.
+            </p>
+            <div class="mt-12 animate-bounce">
+                <a href="#overview" class="text-slate-400">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- Section 1: Overview & Key Features -->
+        <section id="overview" class="py-20">
+            <h2 class="text-4xl font-bold section-title mb-12 text-center scroll-observer">Project at a Glance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card scroll-observer">
+                    <div class="mx-auto w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mb-4"><i data-lucide="brain-circuit"></i></div>
+                    <h3 class="text-xl font-semibold text-slate-800">Autonomous Workflow</h3>
+                    <p class="text-slate-500 mt-2">Utilizes a team of AI agents (CrewAI) to automate the entire analysis pipeline, from data gathering to final reporting.</p>
+                </div>
+                <div class="feature-card scroll-observer" style="transition-delay: 150ms;">
+                    <div class="mx-auto w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-4"><i data-lucide="atom"></i></div>
+                    <h3 class="text-xl font-semibold text-slate-800">Quantum Advantage</h3>
+                    <p class="text-slate-500 mt-2">Implements the QAOA quantum algorithm (Qiskit) to efficiently solve the combinatorial optimization of asset selection.</p>
+                </div>
+                <div class="feature-card scroll-observer" style="transition-delay: 300ms;">
+                     <div class="mx-auto w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4"><i data-lucide="layers"></i></div>
+                    <h3 class="text-xl font-semibold text-slate-800">Full-Stack Implementation</h3>
+                    <p class="text-slate-500 mt-2">A complete application with a high-performance Python backend (Litestar) and an interactive React/Next.js frontend.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Section 2: Project Pipeline -->
+        <section id="pipeline" class="py-20">
+             <h2 class="text-4xl font-bold section-title mb-16 text-center scroll-observer">End-to-End Project Pipeline</h2>
+            <div class="flex flex-col items-center">
+                <div class="w-full max-w-3xl pipeline-item bg-white p-6 rounded-lg border border-slate-200 shadow-md scroll-observer" data-tooltip="The process begins on a responsive dashboard built with Next.js and styled with Tailwind CSS. The user configures key parameters like the asset universe, desired portfolio size, and personal risk tolerance.">
+                    <h3 class="font-bold text-center text-xl text-sky-700">1. Frontend Configuration (React/Next.js)</h3>
+                    <p class="text-sm text-slate-500 text-center mt-1">User defines the optimization problem via an interactive web interface.</p>
+                </div>
+                <div class="pipeline-connector scroll-observer"><div class="pipeline-arrow">&#11167;</div></div>
+                <div class="w-full max-w-3xl pipeline-item bg-white p-6 rounded-lg border border-slate-200 shadow-md scroll-observer" data-tooltip="The configuration is sent as a JSON payload via a RESTful POST request. The Litestar backend uses MsgSpec for high-speed validation to ensure the incoming data is correctly formatted before processing.">
+                    <h3 class="font-bold text-center text-xl text-sky-700">2. API Request (Litestar & MsgSpec)</h3>
+                    <p class="text-sm text-slate-500 text-center mt-1">A robust Python server receives and validates the job request.</p>
+                </div>
+                <div class="pipeline-connector scroll-observer"><div class="pipeline-arrow">&#11167;</div></div>
+                <div class="w-full max-w-3xl pipeline-item bg-white p-6 rounded-lg border border-slate-200 shadow-md scroll-observer" data-tooltip="CrewAI instantiates and manages a team of three specialized AI agents powered by the Groq Llama3 LLM. They execute their tasks in a strict sequence: data gathering, quantum optimization, and reporting.">
+                    <h3 class="font-bold text-center text-xl text-sky-700">3. Agentic Workflow (CrewAI & Groq)</h3>
+                    <p class="text-sm text-slate-500 text-center mt-1">An autonomous AI team executes the multi-stage analysis.</p>
+                </div>
+                <div class="pipeline-connector scroll-observer"><div class="pipeline-arrow">&#11167;</div></div>
+                <div class="w-full max-w-3xl pipeline-item bg-white p-6 rounded-lg border border-slate-200 shadow-md scroll-observer" data-tooltip="The Quantum Strategist agent uses IBM's Qiskit. It formulates the portfolio problem as a Quadratic Program and solves it using the QAOA algorithm on a classical AerSimulator.">
+                    <h3 class="font-bold text-center text-xl text-sky-700">4. Quantum Core (Qiskit QAOA)</h3>
+                    <p class="text-sm text-slate-500 text-center mt-1">A quantum algorithm efficiently finds the optimal asset combination.</p>
+                </div>
+                <div class="pipeline-connector scroll-observer"><div class="pipeline-arrow">&#11167;</div></div>
+                <div class="w-full max-w-3xl pipeline-item bg-white p-6 rounded-lg border border-slate-200 shadow-md scroll-observer" data-tooltip="The final Markdown report from the AI Advisor, containing the optimal allocation and financial metrics, is sent back to the frontend as a JSON response.">
+                    <h3 class="font-bold text-center text-xl text-sky-700">5. Results & Visualization (React)</h3>
+                    <p class="text-sm text-slate-500 text-center mt-1">The user receives a professional report and actionable data visualizations.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Section 3: Technical Deep Dive -->
+        <section id="details" class="py-20">
+             <div class="glass-card p-8 md:p-12 rounded-lg shadow-xl scroll-observer">
+                <h2 class="text-4xl font-bold section-title mb-12 text-center">Technical Deep Dive</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold text-sky-800 mb-4">The Agentic Architecture</h3>
+                        <p class="text-slate-600 mb-4">Instead of a monolithic script, this project employs a multi-agent system using **CrewAI**. This design pattern offers several advantages:</p>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600">
+                            <li><strong>Specialization:</strong> Each agent has a single, well-defined responsibility and a limited set of tools, improving reliability.</li>
+                            <li><strong>Modularity:</strong> Agents can be swapped, upgraded, or reconfigured without affecting the rest of the system.</li>
+                            <li><strong>Scalability:</strong> The workflow can be expanded by adding new agents (e.g., a "Risk Assessment" agent) with minimal code changes.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="text-2xl font-bold text-teal-800 mb-4">The Quantum Algorithm (QAOA)</h3>
+                        <p class="text-slate-600 mb-4">The **Quantum Approximate Optimization Algorithm (QAOA)** is used to find the optimal portfolio. Here's how it works:</p>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600">
+                            <li><strong>Problem Encoding:</strong> The financial objective (maximize returns, minimize risk) is mapped onto a quantum circuit, where asset selections are represented by qubits.</li>
+                            <li><strong>Hybrid Loop:</strong> A classical computer proposes parameters and runs the quantum circuit on a simulator. It analyzes the output and uses a classical optimizer to suggest better parameters, iteratively guiding the quantum state toward the optimal solution.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+        
+        <!-- Section 4: Tech Stack -->
+        <section id="stack" class="py-20">
+            <div class="bg-white p-8 rounded-lg shadow-lg border border-slate-200 scroll-observer">
+                <h2 class="text-4xl font-bold text-sky-800 mb-12 text-center">Technology Stack</h2>
+                 <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                            <h4 class="font-bold text-lg text-sky-700">Frontend</h4>
+                            <p class="text-slate-600 text-sm mt-1">A dynamic, responsive dashboard built with <b class="text-slate-900">Next.js (React)</b> and styled with <b class="text-slate-900">Tailwind CSS</b>. Interactive charts are powered by <b class="text-slate-900">Chart.js</b>.</p>
+                        </div>
+                         <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                            <h4 class="font-bold text-lg text-sky-700">Backend</h4>
+                            <p class="text-slate-600 text-sm mt-1">A high-performance API server built with <b class="text-slate-900">Litestar</b> (Python), featuring data validation with <b class="text-slate-900">MsgSpec</b> for speed.</p>
+                        </div>
+                         <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                            <h4 class="font-bold text-lg text-sky-700">AI & Quantum</h4>
+                            <p class="text-slate-600 text-sm mt-1">Agentic workflow by <b class="text-slate-900">CrewAI</b>, with reasoning powered by the <b class="text-slate-900">Groq Llama3 LLM</b>. Quantum algorithms are implemented and simulated using <b class="text-slate-900">IBM's Qiskit</b>.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-700 mb-4 text-center">Project Focus Areas</h3>
+                         <div class="chart-container">
+                            <canvas id="techStackChart"></canvas>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-8 bg-slate-100 text-slate-500 mt-12 border-t border-slate-200">
+        <p>&copy; 2025 - A Project Showcase by [Your Name]</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+    const tooltipEl = document.getElementById('tooltip');
+    const scrollObservers = document.querySelectorAll('.scroll-observer');
+    const navDots = document.querySelectorAll('.nav-dot');
+    const sections = document.querySelectorAll('section');
+
+    // --- Interactive Tooltip Logic ---
+    const interactiveElements = document.querySelectorAll('[data-tooltip]');
+    interactiveElements.forEach(elem => {
+        elem.addEventListener('mouseenter', () => {
+            tooltipEl.innerHTML = elem.dataset.tooltip;
+            tooltipEl.style.opacity = '1';
+            tooltipEl.style.transform = 'translate(-50%, -120%) scale(1)';
+        });
+        elem.addEventListener('mousemove', (e) => {
+            tooltipEl.style.left = `${e.clientX}px`;
+            tooltipEl.style.top = `${e.clientY}px`;
+        });
+        elem.addEventListener('mouseleave', () => {
+            tooltipEl.style.opacity = '0';
+            tooltipEl.style.transform = 'translate(-50%, -120%) scale(0.95)';
+        });
+    });
+
+    // --- Scroll Animation Observer ---
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+    scrollObservers.forEach(el => animationObserver.observe(el));
+
+    // --- Sticky Nav Observer ---
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navDots.forEach(dot => {
+                    dot.classList.toggle('active', dot.getAttribute('href').substring(1) === entry.target.id);
+                });
+            }
+        });
+        document.getElementById('side-nav').classList.toggle('visible', window.scrollY > window.innerHeight / 2);
+    }, { rootMargin: "-50% 0px -50% 0px" });
+    sections.forEach(sec => navObserver.observe(sec));
+    window.addEventListener('scroll', () => {
+         document.getElementById('side-nav').classList.toggle('visible', window.scrollY > window.innerHeight / 2);
+    });
+
+    // --- Chart Rendering Logic ---
+    const commonChartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: {
+            legend: { labels: { color: '#475569', font: { family: 'Inter', size: 14 } } },
+            tooltip: {
+                bodyFont: { family: 'Inter' },
+                titleFont: { family: 'Inter', weight: 'bold' },
+                backgroundColor: '#0f172a',
+                titleColor: '#f1f5f9',
+                bodyColor: '#f1f5f9',
+                padding: 12,
+                cornerRadius: 8,
+                boxPadding: 4
+            }
+        },
+    };
+
+    const techStackCtx = document.getElementById('techStackChart').getContext('2d');
+    new Chart(techStackCtx, {
+        type: 'radar',
+        data: {
+            labels: ['Frontend (React)', 'Backend (Python)', 'AI/LLM (CrewAI)', 'Quantum (Qiskit)', 'Data Viz', 'API Design'],
+            datasets: [{
+                label: 'Project Focus',
+                data: [8, 9, 10, 9, 8, 7],
+                fill: true,
+                backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                borderColor: 'rgba(2, 132, 199, 1)',
+                pointBackgroundColor: 'rgba(2, 132, 199, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(56, 189, 248, 1)'
+            }]
+        },
+        options: { ...commonChartOptions,
+            scales: {
+                r: {
+                    angleLines: { color: '#cbd5e1' },
+                    grid: { color: '#cbd5e1' },
+                    pointLabels: { color: '#334155', font: { size: 12, family: 'Inter' } },
+                    ticks: { display: false, backdropColor: 'transparent' }
+                }
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
+
